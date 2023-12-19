@@ -1,3 +1,5 @@
+from functions import add_contact, view_contacts
+
 file_name = "list.csv"
 
 try:
