@@ -1,4 +1,4 @@
-from functions import add_contact, view_contacts
+from functions import add_contact, view_contacts, remove_contact
 
 file_name = "list.csv"
 
