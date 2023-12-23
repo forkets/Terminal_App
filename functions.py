@@ -1,16 +1,18 @@
 import csv
 
+
 def add_contact(file_name):
     print("Add contact")
     # ask the title of the contact
-    contact_name = input("Enter a name: ")
-    contact_number = int(input("Enter a phone number: "))
+    first_name = input("First Name: ")
+    last_name = input("Last Name: ")
+    ph_number = int(input("Phone Number: "))
     # open file - list.csv
     with open(file_name, "a") as f:
         # insert values - title = user entered
                     # - completed = False
         writer = csv.writer(f)
-        writer.writerow([contact_name, contact_number])
+        writer.writerow([first_name, last_name, ph_number])
         # writer.writerow([contact_number, "False"])
 
 def remove_contact(file_name):
@@ -38,3 +40,18 @@ def view_contacts(file_name):
         reader = csv.reader(f)
         for row in reader:
             print(row)
+
+def edit_contact(file_name):
+    print("Edit contact")
+    with open(file_name, "r") as f:
+        reader = csv.reader(f)
+        for row in reader:
+            print(row)
+    
+    # Ask user for the field to edit
+    field_to_edit = input("Enter the number corresponding to the field you want to edit: \n(1: First Name, 2: Last Name, 3: Email): ")
+    if field_to_edit == "1":
+        new_firstname = input("Enter the new first name: ")
+        add_contact.first_name = new_firstname
+        print("First name updated.")
+        print(new_firstname)

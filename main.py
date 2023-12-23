@@ -1,22 +1,22 @@
-from functions import add_contact, view_contacts, remove_contact
+from functions import add_contact, view_contacts, remove_contact, edit_contact
 
 file_name = "list.csv"
 
 try:
     # open the file in read mode
-    todo_file = open(file_name, "r")
-    todo_file.close()
-    print("In try block")
+    contact_file = open(file_name, "r")
+    contact_file.close()
+    print("File Found")
     # if it throws error, it means the file doesn't exist, goes to except block
     # if no error, it means the file exists
 except FileNotFoundError:
     # now, we know the file doesn't exist
     # create the file
-    todo_file = open(file_name, "w")
+    contact_file = open(file_name, "w")
     # we can also insert the first line into the file
-    todo_file.write("Name,Number\n")
-    todo_file.close()
-    print("In except block")
+    contact_file.write("First, Last, Number\n")
+    contact_file.close()
+    print("File Created")
 
 print("***Welcome!***")
 print(" Address Book")
@@ -48,8 +48,8 @@ while users_choice != "5":
         continue
     else:
         print("Invalid Input")
-    print(users_choice)
+    # print(users_choice)
     
-print("Thank you for choosing Address Book for all your contact needs!")
+
 
 # create file for functions for each option, import functions
