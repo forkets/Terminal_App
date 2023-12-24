@@ -9,16 +9,14 @@ def add_contact(file_name):
     ph_number = int(input("Phone Number: "))
     # open file - list.csv
     with open(file_name, "a") as f:
-        # insert values - title = user entered
-                    # - completed = False
+
         writer = csv.writer(f)
         writer.writerow([first_name, last_name, ph_number])
-        # writer.writerow([contact_number, "False"])
+
 
 def remove_contact(file_name):
     print("Remove contact")
-    contact_name = input("Enter contact name that you want to remove: ")
-    # contact_number = int(input("Enter contact number you want to remove: "))
+    contact_name = input("Enter first or last name of contact that you want to remove: ")
     # copy all the contents of the csv into a new csv
     # while doing this, we constantly check for the condition
     # when we encounter the contact to be removed, we don't copy that one
@@ -33,6 +31,7 @@ def remove_contact(file_name):
         writer = csv.writer(f)
         writer.writerows(contact_lists)
     print(contact_lists)
+    print(f"Contact {contact_name} Removed")
 
 def view_contacts(file_name):
     print("View contacts")

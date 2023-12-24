@@ -1,4 +1,5 @@
 from functions import add_contact, view_contacts, remove_contact, edit_contact
+from colored import Fore, Back, Style
 
 file_name = "list.csv"
 
@@ -18,15 +19,15 @@ except FileNotFoundError:
     contact_file.close()
     print("File Created")
 
-print("***Welcome!***")
-print(" Address Book")
+print(f"{Fore.black}{Back.dark_gray}***Welcome!***{Style.reset}")
+print(f"{Fore.black}{Back.light_gray}Contacts Book {Style.reset}")
 
 # change these to relevant address book options
 def create_menu():
     print("1. Enter 1 to add new contact")
     print("2. Enter 2 to remove contact")
-    print("3. Enter 3 to edit a contact")
-    print("4. Enter 4 to view your contacts")
+    print("3. Enter 3 to view your contacts")
+    print("4. Enter 4 to edit a contact")
     print("5. Enter 5 to exit")
     choice = input("Enter your selection: ")
     return choice
@@ -40,9 +41,10 @@ while users_choice != "5":
     elif (users_choice == "2"):
         remove_contact(file_name)
     elif (users_choice == "3"):
-        edit_contact(file_name)
-    elif (users_choice == "4"):
         view_contacts(file_name)
+        input("Here are your contacts! Press Enter to return to menu.")
+    elif (users_choice == "4"):
+        edit_contact(file_name)
     elif (users_choice == "5"):
         print("Goodbye")
         continue
