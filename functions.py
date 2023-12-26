@@ -1,56 +1,53 @@
 import csv
+from colored import Style
 
+from constants import COLOR, FILE_NAME
 
-def add_contact(file_name):
-    print("Add contact")
-    # ask the title of the contact
+class Person:
+    def __init__(self, first, last, ph_number):
+        self.first = first
+        self.last = last
+        self.ph_number = ph_number
+
+    def full_name(self):
+        return f"{self.first} {self.last}"
+
+    def __str__(self) -> str:
+        print("----------\n")
+        return f"{self.first} {self.last} : {self.ph_number}\n"
+
+def user_action_add_contact(contacts: list[Person]):
+    print(f"{COLOR}Please enter contact information{Style.reset}")
+
     first_name = input("First Name: ")
     last_name = input("Last Name: ")
     ph_number = int(input("Phone Number: "))
-    # open file - list.csv
-    with open(file_name, "a") as f:
 
+    our_contact = Person(first_name, last_name, ph_number)
+    contacts = add_to_contact_list(our_contact, contacts)
+    save_contacts(contacts)
+
+    print(f"{COLOR}Thanks! Information stored!{Style.reset}")
+
+
+def save_contacts(contacts: list[Person]):
+    with open(FILE_NAME, "w") as f:
         writer = csv.writer(f)
-        writer.writerow([first_name, last_name, ph_number])
 
+        for c in contacts:
+            writer.writerow([c.first, c.last, c.ph_number])
 
-def remove_contact(file_name):
-    print("Remove contact")
-    contact_name = input("Enter first or last name of contact that you want to remove: ")
-    # copy all the contents of the csv into a new csv
-    # while doing this, we constantly check for the condition
-    # when we encounter the contact to be removed, we don't copy that one
-    # the final new contact will be written in the csv file
-    contact_lists = []
-    with open(file_name, "r") as f:
+# read all contacts from a file into in-memory list
+def read_contacts_from_file():
+    contacts = list()
+    with open(FILE_NAME, "r") as f:
         reader = csv.reader(f)
         for row in reader:
-            if (contact_name != row[0]): # is not the first row
-                contact_lists.append(row)
-    with open(file_name, "w") as f:
-        writer = csv.writer(f)
-        writer.writerows(contact_lists)
-    print(contact_lists)
-    print(f"Contact {contact_name} Removed")
+            contacts.append(Person(row[0], row[1], row[2]))
 
-def view_contacts(file_name):
-    print("View contacts")
-    with open(file_name, "r") as f:
-        reader = csv.reader(f)
-        for row in reader:
-            print(row)
+    return contacts
 
-def edit_contact(file_name):
-    print("Edit contact")
-    with open(file_name, "r") as f:
-        reader = csv.reader(f)
-        for row in reader:
-            print(row)
-    
-    # Ask user for the field to edit
-    field_to_edit = input("Enter the number corresponding to the field you want to edit: \n(1: First Name, 2: Last Name, 3: Email): ")
-    if field_to_edit == "1":
-        new_firstname = input("Enter the new first name: ")
-        add_contact.first_name = new_firstname
-        print("First name updated.")
-        print(new_firstname)
+# add to in-memory list of contacts
+def add_to_contact_list(contact: Person, contacts: list[Person]) -> list[Person]:
+    contacts.append(contact)
+    return contacts
