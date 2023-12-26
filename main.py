@@ -1,57 +1,45 @@
-from functions import add_contact, view_contacts, remove_contact, edit_contact
-from colored import Fore, Back, Style
+from constants import COLOR
+from functions import read_contacts_from_file, user_action_add_contact, COLOR
+from colored import Style
 
-file_name = "list.csv"
-
+# if file already exists
 try:
     # open the file in read mode
-    contact_file = open(file_name, "r")
+    contact_file = open("contacts.csv", "r")
     contact_file.close()
-    print("File Found")
-    # if it throws error, it means the file doesn't exist, goes to except block
-    # if no error, it means the file exists
+    print("File found")
+
+# if file does not already exist
 except FileNotFoundError:
-    # now, we know the file doesn't exist
     # create the file
-    contact_file = open(file_name, "w")
-    # we can also insert the first line into the file
-    contact_file.write("First, Last, Number\n")
+    contact_file = open("contacts.csv", "w")
     contact_file.close()
-    print("File Created")
 
-print(f"{Fore.black}{Back.dark_gray}***Welcome!***{Style.reset}")
-print(f"{Fore.black}{Back.light_gray}Contacts Book {Style.reset}")
+users_input = ""
 
-# change these to relevant address book options
-def create_menu():
+contacts = read_contacts_from_file()
+
+print(f"{COLOR}*Welcome to the address book*{Style.reset}")
+
+while users_input != "5":
     print("1. Enter 1 to add new contact")
-    print("2. Enter 2 to remove contact")
-    print("3. Enter 3 to view your contacts")
-    print("4. Enter 4 to edit a contact")
-    print("5. Enter 5 to exit")
-    choice = input("Enter your selection: ")
-    return choice
+    print("2. Enter 2 to view contacts")
+    print("3. Enter 3 to find contact")
+    print("q. Enter q to quit")
+    users_input = input(f"{COLOR}Please enter your selection:{Style.reset} ")
 
-users_choice = ""
+    if users_input == "1":
+        user_action_add_contact(contacts)
 
-while users_choice != "5":
-    users_choice = create_menu()
-    if (users_choice == "1"):
-        add_contact(file_name)
-    elif (users_choice == "2"):
-        remove_contact(file_name)
-    elif (users_choice == "3"):
-        view_contacts(file_name)
-        input("Here are your contacts! Press Enter to return to menu.")
-    elif (users_choice == "4"):
-        edit_contact(file_name)
-    elif (users_choice == "5"):
-        print("Goodbye")
-        continue
-    else:
-        print("Invalid Input")
-    # print(users_choice)
+    elif users_input == "2":
+        for contact in contacts:
+            print(contact)
+        input(f"{COLOR}Here are your contacts! Press Enter to return to menu.{Style.reset}")
     
+    # elif users_input == "3":
+    #     view_contacts(contacts)
+    elif users_input.lower() == "q":
+        break
 
 
-# create file for functions for each option, import functions
+print(f"{COLOR}Bye!{Style.reset}")
