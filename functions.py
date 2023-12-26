@@ -57,6 +57,7 @@ def add_to_contact_list(contact: Person, contacts: list[Person]) -> list[Person]
     contacts.append(contact)
     return contacts
 
+# list the contents of in-memory list
 def display_contact_list(contacts):
     with open(FILE_NAME, "r") as f:
         reader = csv.reader(f)
