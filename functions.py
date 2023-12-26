@@ -29,6 +29,11 @@ def user_action_add_contact(contacts: list[Person]):
 
     print(f"{COLOR}Thanks! Information stored!{Style.reset}")
 
+def view_contacts(contacts: list[Person]):
+    to_view = input(f"{COLOR}Enter contact name to view:\n{Style.reset}")
+    for contact in contacts:
+            if to_view in contact.full_name():
+                print(contact)
 
 def save_contacts(contacts: list[Person]):
     with open(FILE_NAME, "w") as f:
@@ -50,4 +55,9 @@ def read_contacts_from_file():
 # add to in-memory list of contacts
 def add_to_contact_list(contact: Person, contacts: list[Person]) -> list[Person]:
     contacts.append(contact)
+    return contacts
+
+def display_contact_list(contacts):
+    with open(FILE_NAME, "r") as f:
+        reader = csv.reader(f)
     return contacts
