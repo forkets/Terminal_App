@@ -76,3 +76,22 @@ def find_contact_in_list(contacts: list[Person], prompt: str = "Enter contact na
     else:
         print(matched_contact)
     return matched_contact
+
+def remove_contact_from_list(contacts: list[Person]) -> list[Person]:
+    # find contact
+    matched_contact = find_contact_in_list(contacts, "Enter contact name to remove")
+    # start a new list
+    new_contact_list = []
+
+    # loop over existing list
+    for contact in contacts:
+        # check if matched_contact is this_contact
+        if matched_contact == contact:
+            # if so, skip
+            continue
+            # if not, add to new list
+        else:
+            new_contact_list.append(contact)
+
+    save_contacts(new_contact_list)
+    return new_contact_list
