@@ -108,4 +108,5 @@ def remove_contact_from_list(contacts: list[Person]) -> list[Person]:
             new_contact_list.append(contact)
 
     save_contacts(new_contact_list)
+    print(f"Contact {matched_contact} removed ")
     return new_contact_list
