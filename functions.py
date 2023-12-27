@@ -30,7 +30,7 @@ def user_action_add_contact(contacts: list[Person]):
     print(f"{COLOR}Thanks! Information stored!{Style.reset}")
 
 def view_contacts(contacts: list[Person]):
-    to_view = input(f"{COLOR}Enter contact name to view:\n{Style.reset}")
+    to_view = input(f"{COLOR}Enter contact's full name to view:\n{Style.reset}")
     for contact in contacts:
             if to_view in contact.full_name():
                 print(contact)
@@ -63,7 +63,7 @@ def display_contact_list(contacts):
     return contacts
 
 # search the list for a specific contact
-def find_contact_in_list(contacts: list[Person], prompt: str = "Enter contact name to view") -> Person:
+def find_contact_in_list(contacts: list[Person], prompt: str = "Enter contact's full name to view") -> Person:
     contact_name = input(prompt + ": \n")
     matched_contact = None
     for contact in contacts:   
@@ -80,7 +80,7 @@ def find_contact_in_list(contacts: list[Person], prompt: str = "Enter contact na
 # edit existing contact
 def update_contact_in_list(contacts: list[Person]) -> Person:
     # find contact
-    matched_contact = find_contact_in_list(contacts, "Enter contact name to update")
+    matched_contact = find_contact_in_list(contacts, "Enter contact's full name to update")
     # collect information from user
     print(f"{COLOR}Please enter contact information{Style.reset}")
 
@@ -98,7 +98,7 @@ def update_contact_in_list(contacts: list[Person]) -> Person:
 
 def remove_contact_from_list(contacts: list[Person]) -> list[Person]:
     # find contact
-    matched_contact = find_contact_in_list(contacts, "Enter contact name to remove")
+    matched_contact = find_contact_in_list(contacts, "Enter contact's full name to remove")
     # start a new list
     new_contact_list = []
 
