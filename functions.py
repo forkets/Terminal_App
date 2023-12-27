@@ -4,7 +4,7 @@ from colored import Style
 from constants import COLOR, FILE_NAME
 
 class Person:
-    def __init__(self, first, last, ph_number):
+    def __init__(self, first: str, last: str, ph_number: int):
         self.first = first
         self.last = last
         self.ph_number = ph_number
@@ -43,13 +43,12 @@ def save_contacts(contacts: list[Person]):
             writer.writerow([c.first, c.last, c.ph_number])
 
 # read all contacts from a file into in-memory list
-def read_contacts_from_file():
+def read_contacts_from_file() -> list[Person]:
     contacts = list()
     with open(FILE_NAME, "r") as f:
         reader = csv.reader(f)
         for row in reader:
             contacts.append(Person(row[0], row[1], row[2]))
-
     return contacts
 
 # add to in-memory list of contacts
@@ -62,3 +61,18 @@ def display_contact_list(contacts):
     with open(FILE_NAME, "r") as f:
         reader = csv.reader(f)
     return contacts
+
+# search the list for a specific contact
+def find_contact_in_list(contacts: list[Person], prompt: str = "Enter contact name to view") -> Person:
+    contact_name = input(prompt + ": \n")
+    matched_contact = None
+    for contact in contacts:   
+        if contact_name == contact.full_name():
+            matched_contact = contact
+            break
+
+    if matched_contact is None:
+        print("Contact not found")
+    else:
+        print(matched_contact)
+    return matched_contact
