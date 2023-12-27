@@ -77,6 +77,25 @@ def find_contact_in_list(contacts: list[Person], prompt: str = "Enter contact na
         print(matched_contact)
     return matched_contact
 
+# edit existing contact
+def update_contact_in_list(contacts: list[Person]) -> Person:
+    # find contact
+    matched_contact = find_contact_in_list(contacts, "Enter contact name to update")
+    # collect information from user
+    print(f"{COLOR}Please enter contact information{Style.reset}")
+
+    first_name = input("First Name: ")
+    last_name = input("Last Name: ")
+    ph_number = int(input("Phone Number: "))
+
+    # replace existing info with new info
+    matched_contact.first = first_name
+    matched_contact.last = last_name
+    matched_contact.ph_number = ph_number
+
+    save_contacts(contacts)
+    return matched_contact
+
 def remove_contact_from_list(contacts: list[Person]) -> list[Person]:
     # find contact
     matched_contact = find_contact_in_list(contacts, "Enter contact name to remove")
