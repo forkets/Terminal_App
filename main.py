@@ -19,7 +19,7 @@ users_input = ""
 
 contacts = read_contacts_from_file()
 
-print(f"{COLOR}*Welcome to the address book*{Style.reset}")
+print(f"{COLOR}*Welcome to your Contacts Book*{Style.reset}")
 
 while users_input != "q":
     print("1. Enter 1 to add new contact")
@@ -28,7 +28,7 @@ while users_input != "q":
     print("4. Enter 4 to edit a contact")
     print("5. Enter 5 to remove a contact")
     print("q. Enter q to quit")
-    users_input = input(f"{COLOR}Please enter your selection:{Style.reset} ")
+    users_input = input(f"{COLOR}Please enter your selection {Style.reset}: ")
 
     if users_input == "1":
         user_action_add_contact(contacts)
