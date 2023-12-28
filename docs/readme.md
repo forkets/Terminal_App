@@ -57,11 +57,11 @@ A few screenshots can be found at the end of the plan.
         - [x] Return to menu
 
 ### Project Management Plan<br>
-![Project Management Cards](./imgs/project-management.png)
+![Project Management Cards](../imgs/project-management.png)
 ### Functions Checklist
-![Functions Checklist](./imgs/functions-checklist.png)
+![Functions Checklist](../imgs/functions-checklist.png)
 ### Add Contacts Checklist
-![Add Contacts Checklist](./imgs/add-contact-checklist.png)
+![Add Contacts Checklist](../imgs/add-contact-checklist.png)
 
 
 ## How to use application
@@ -80,7 +80,7 @@ To install colored and pytest, simply run ```pip3 install colored``` and ```pip3
 ### Ubuntu Instructions
 Step 1: Open the Ubuntu terminal<br>
 Step 2: Navigate to the application directory folder using ```cd /path```<br>
-Step 3: Type the command ```./run.sh```<br>
+Step 3: Type the command ```./src/run.sh```<br>
 Step 4: Enjoy the application!
 
 ### PowerShell
