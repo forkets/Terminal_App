@@ -21,7 +21,7 @@ def user_action_add_contact(contacts: list[Person]):
 
     first_name = input("First Name: ")
     last_name = input("Last Name: ")
-    ph_number = int(input("Phone Number: "))
+    ph_number = input("Phone Number: ")
 
     our_contact = Person(first_name, last_name, ph_number)
     contacts = add_to_contact_list(our_contact, contacts)
@@ -81,7 +81,7 @@ def update_contact_in_list(contacts: list[Person]) -> Person:
 
     first_name = input("First Name: ")
     last_name = input("Last Name: ")
-    ph_number = int(input("Phone Number: "))
+    ph_number = input("Phone Number: ")
 
     # replace existing info with new info
     matched_contact.first = first_name
